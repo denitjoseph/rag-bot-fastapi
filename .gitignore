@@ -135,7 +135,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+# .env is intentionally tracked (private repo only - contains API keys for EC2 deployment)
 .envrc
 .venv
 env/
