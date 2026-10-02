@@ -4,8 +4,8 @@ import aiofiles
 from typing import List
 from fastapi import UploadFile
 
-from langchain.document_loaders import PyPDFLoader
-from langchain.text_splitter import TokenTextSplitter
+from langchain_community.document_loaders import PyPDFLoader
+from langchain_text_splitters import TokenTextSplitter
 
 from config.settings import TEMPFILE_UPLOAD_DIRECTORY
 from utils.logger import logger

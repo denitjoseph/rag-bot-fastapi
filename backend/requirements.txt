@@ -1,9 +1,12 @@
 fastapi
 uvicorn
+langchain
 langchain-community
 langchain-groq
 langchain-google-genai
+langchain-huggingface
 chromadb
+langchain-chroma
 sentence-transformers
 pypdf
 python-dotenv

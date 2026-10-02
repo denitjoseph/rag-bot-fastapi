@@ -1,11 +1,12 @@
 from config.settings import GROQ_API_KEY, GOOGLE_API_KEY
 
-from langchain.prompts import ChatPromptTemplate
-from langchain.chains import create_retrieval_chain
-from langchain.chains.combine_documents import create_stuff_documents_chain
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_classic.chains.retrieval import create_retrieval_chain
+from langchain_classic.chains.combine_documents import create_stuff_documents_chain
 
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_groq import ChatGroq
+from google.oauth2.credentials import Credentials
 
 from utils.logger import logger
 
@@ -22,7 +23,7 @@ def get_llm(model_provider: str, model: str):
   if model_provider == "groq":
     return ChatGroq(model=model, api_key=GROQ_API_KEY)
   elif model_provider == "gemini":
-    return ChatGoogleGenerativeAI(model=model, api_key=GOOGLE_API_KEY)
+    return ChatGoogleGenerativeAI(model=model, credentials=Credentials(token=GOOGLE_API_KEY))
   else:
     logger.error(f"Unsupported LLM Provider: {model_provider}")
     raise ValueError(f"Unsupported LLM Provider: {model_provider}")
