@@ -1,4 +1,3 @@
-```python
 import os
 
 from typing import List
@@ -153,5 +152,4 @@ def find_similar_chunks(model_provider: str, query: str):
     vectorstore = load_vectorstore(model_provider)
 
     return vectorstore.similarity_search(query)
-```
 
