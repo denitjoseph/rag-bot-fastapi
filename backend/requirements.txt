@@ -8,6 +8,7 @@ langchain-huggingface
 chromadb
 langchain-chroma
 sentence-transformers
+torch==2.14.1+cpu
 pypdf
 python-dotenv
 python-multipart

@@ -1,6 +1,4 @@
-﻿version: '3.9'
-
-services:
+﻿services:
 
   backend:
     build:
@@ -17,7 +15,7 @@ services:
       - rag_data:/app/data
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/docs"]
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/docs')"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -30,7 +28,6 @@ services:
     ports:
       - "8501:8501"
     environment:
-      # Point the frontend to the backend container
       - API_URL=http://backend:8000
     depends_on:
       backend:
@@ -40,3 +37,4 @@ services:
 volumes:
   rag_temp:
   rag_data:
+
