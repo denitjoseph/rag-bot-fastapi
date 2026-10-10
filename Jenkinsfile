@@ -13,10 +13,26 @@ pipeline {
     }
 
     stages {
-
         stage('Checkout') {
             steps {
                 checkout scm
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    def scannerHome = tool 'SonarScanner'
+                    withSonarQubeEnv('SonarQube') {
+                        sh """
+                            ${scannerHome}/bin/sonar-scanner \
+                              -Dsonar.projectKey=rag-bot-fastapi \
+                              -Dsonar.projectName='RAG Bot FastAPI' \
+                              -Dsonar.sources=backend,frontend \
+                              '-Dsonar.exclusions=**/__pycache__/**,**/.venv/**,**/venv/**,**/*.pyc'
+                        """
+                    }
+                }
             }
         }
 
@@ -59,17 +75,13 @@ pipeline {
 
         stage('Push Backend') {
             steps {
-                sh '''
-                    docker push ${BACKEND_IMAGE}:${IMAGE_TAG}
-                '''
+                sh 'docker push ${BACKEND_IMAGE}:${IMAGE_TAG}'
             }
         }
 
         stage('Push Frontend') {
             steps {
-                sh '''
-                    docker push ${FRONTEND_IMAGE}:${IMAGE_TAG}
-                '''
+                sh 'docker push ${FRONTEND_IMAGE}:${IMAGE_TAG}'
             }
         }
     }
