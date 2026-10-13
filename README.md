@@ -1,7 +1,9 @@
-﻿# 🚀 RAG PDF Bot — AWS CI/CD & Observability
+# 🚀 RAG PDF Bot — AWS CI/CD & Observability
 
 > **Study project documentation** — covers the RAG PDF Bot from local containers through AWS EKS deployment, CI/CD (Jenkins + SonarQube), GitOps (Argo CD), monitoring (Prometheus + Grafana), and a custom HTTPS domain.
 > Written for a single-node EKS study environment. Always verify resource names and costs in your own AWS account.
+>
+> 📖 **Application Documentation**: For local development, FastAPI backend, and Streamlit frontend details, see [APP_README.md](APP_README.md).
 
 ---
 
